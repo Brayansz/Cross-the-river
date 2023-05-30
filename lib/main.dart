@@ -67,7 +67,7 @@ class _imagenesState extends State<imagenes> {
                 left: widget.n1,
                 top: 200.0,
                 right: widget.n2,
-                bottom: 80.0,
+                bottom: 90.0,
                 child: Image.asset(widget.persona),
               ),
             ],
@@ -90,7 +90,6 @@ class _imagenesState extends State<imagenes> {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class Widget1 extends StatelessWidget {
   const Widget1({super.key});
@@ -108,15 +107,15 @@ class Widget1 extends StatelessWidget {
     bool nivel33 = false;
     bool nivel44 = false;
 
-    void nivel1() {
+    void nivel(String ms1, String ms2, imagenes objeto, int numero) {
+
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          if (oveja.cont == 1) {
-            nivel11 = true;
+          if (objeto.cont == numero) {
             return AlertDialog(
               title: Text('¡Excelente!'),
-              content: Text('Pasaste la parte 1'),
+              content: Text(ms1),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -129,8 +128,7 @@ class Widget1 extends StatelessWidget {
           } else {
             return AlertDialog(
               title: Text('Perdiste'),
-              content: Text(
-                  'El lobo se comió la oveja o la oveja se comió la lechuga'),
+              content: Text(ms2),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -145,170 +143,24 @@ class Widget1 extends StatelessWidget {
       );
     }
 
-    void nivel2() {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          if (lechuga.cont == 1) {
-            nivel22 = true;
-            return AlertDialog(
-              title: Text('¡Excelente!'),
-              content: Text('Pasaste la parte 2'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),
-                ),
-              ],
-            );
-          } else {
-            return AlertDialog(
-              title: Text('Perdiste'),
-              content: Text('El lobo se comió la oveja'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),
-                ),
-              ],
-            );
-          }
-        },
-      );
-    }
-
-    ;
-
-    void nivel3() {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          if (oveja.cont == 2) {
-            nivel33 = true;
-            return AlertDialog(
-              title: Text('¡Excelente!'),
-              content: Text('Pasaste la parte 3'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),
-                ),
-              ],
-            );
-          } else {
-            return AlertDialog(
-              title: Text('Perdiste'),
-              content: Text(
-                  'El lobo se comió la oveja o la oveja se comió la lechuga'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),
-                ),
-              ],
-            );
-          }
-        },
-      );
-    }
-
-    void nivel4() {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          if (lobo.cont == 1) {
-            nivel44 = true;
-            return AlertDialog(
-              title: Text('¡Excelente!'),
-              content: Text('Pasaste la parte 4'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),
-                ),
-              ],
-            );
-          } else {
-            return AlertDialog(
-              title: Text('Perdiste'),
-              content: Text(
-                  'El lobo se comió la oveja o la oveja se comió la lechuga'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),
-                ),
-              ],
-            );
-          }
-        },
-      );
-    }
-
-    void nivel5() {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          if (oveja.cont == 3) {
-            return AlertDialog(
-              title: Text('¡Excelente!'),
-              content: Text('GANASTE'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),
-                ),
-              ],
-            );
-          } else {
-            return AlertDialog(
-              title: Text('Perdiste'),
-              content: Text(
-                  'El lobo se comió la oveja o la oveja se comió la lechuga'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('OK'),
-                ),
-              ],
-            );
-          }
-        },
-      );
-    }
 
     void juego() {
       if (nivel11 == false) {
-        nivel1();
+        nivel11=true;
+        nivel("Pasaste la parte 1", "El lobo se comió la oveja o la oveja se comió la lechuga", oveja, 1);
       } else if (nivel22 == false) {
-        nivel2();
+        nivel("Pasaste la parte 2", "El lobo se comió la oveja o la oveja se comió la lechuga", lechuga, 1);
+        nivel22=true;
       } else if (nivel33 == false) {
-        nivel3();
+        nivel("Pasaste la parte 3", "El lobo se comió la oveja o la oveja se comió la lechuga", oveja, 2);
+        nivel33=true;
       } else if (nivel44 == false) {
-        nivel4();
+        nivel("Pasaste la parte 4", "El lobo se comió la oveja o la oveja se comió la lechuga", lobo, 1);
+        nivel44=true;
       } else {
-        nivel5();
+        nivel("GANASTEEE", "El lobo se comió la oveja o la oveja se comió la lechuga", oveja, 3);
       }
     }
-
-
-
 
     return Scaffold(
       appBar: AppBar(
@@ -324,8 +176,8 @@ class Widget1 extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     image: const DecorationImage(
-                      image: NetworkImage('https://img.freepik.com/vector-premium/rio-atravesando-horizonte-paisaje-otonal-orientacion-vertical_198696-450.jpg'),
-                      fit: BoxFit.cover,
+                      image: AssetImage('assets/rio.jpg'),
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -350,6 +202,7 @@ class Widget1 extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
+
               juego();
             },
             child: Text("Verificar"),
